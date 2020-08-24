@@ -23,12 +23,15 @@ class JobScraper:
     
     def __soup_contents(self):
         self.soup = BeautifulSoup(self.connect().text, 'lxml')
-        self.jobs = self.soup.find_all('td', {'id': 'resultsCol'})
-        for job in self.jobs:
-            self.results.append(job.text)
-        print(self.results)
+        self.jobs = self.soup.find('tbody', {'id': 'resultsBodyContent'})
+        self.title = self.jobs.find_all('h2', {'class': 'title'})
+        self.company = self.jobs.find_all('div', {'class': 'sjcl'})
+        self.salary = self.jobs.find_all('div', {'class': 'salarySnippet salarySnippetDemphasizeholisticSalary'})
+        self.summary = self.jobs.find_all('div', {'class': 'summary'})
+        self.results.append(self.title + self.company + self.salary + self.salary + self.summary)
+        
 
-
+            
 test = JobScraper('Python', 'Southampton')
 test.connect()
 test.search()
