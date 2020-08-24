@@ -1,6 +1,6 @@
 import unittest
 from mock import patch
-from main import JobScraper
+from jobscraper import JobScraper
 
 class TestJobScraper(unittest.TestCase):
  
