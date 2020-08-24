@@ -18,13 +18,20 @@ class JobScraper:
             return self.res
         return None
     
-    
     def search(self):
         self.__soup_contents()
     
     def __soup_contents(self):
         self.soup = BeautifulSoup(self.connect().text, 'lxml')
-        self.jobs = self.soup.find_all('div', {'class': 'summary'})
+        self.jobs = self.soup.find_all('td', {'id': 'resultsCol'})
         for job in self.jobs:
-            self.results.append(job)
-            
+            self.results.append(job.text)
+        print(self.results)
+
+
+test = JobScraper('Python', 'Southampton')
+test.connect()
+test.search()
+
+
+
