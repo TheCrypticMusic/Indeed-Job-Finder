@@ -20,6 +20,7 @@ class JobScraper:
                 return res
             return None
 
+
     def search(self):
         print(f'Searching for {self.job} jobs in {self.location}')
         # self.__indeed_soup_contents()
