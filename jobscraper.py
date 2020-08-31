@@ -10,7 +10,7 @@ class JobScraper:
     def __init__(self, job, location):
         self.job = job
         self.location = location
-        self.url = [f'https://www.indeed.co.uk/jobs?q={self.job}&l={self.location}',
+        self.url = [#f'https://www.indeed.co.uk/jobs?q={self.job}&l={self.location}',
                     f'https://www.monster.co.uk/jobs/search/?q={self.job}&where={self.location}&client=power&cy=uk&rad=25']
 
     def connect(self):
@@ -51,9 +51,17 @@ class JobScraper:
 
     def __monster_soup_contents(self):
         monster_soup = BeautifulSoup(self.connect().text, 'lxml')
-        jobs = monster_soup.find_all('div', {'class': 'summary'})
-        for job in jobs:
-            print(job)
+        content = monster_soup.find_all('div', {'class': 'flex-row'})
+        for i in content:
+            title = i.find('h2', {'class': 'title'}).text.splitlines()
+            company = i.find('div', {'class': 'company'}).text.splitlines()
+            location = i.find('div', {'class': 'location'}).text.splitlines()
+            url = i.find('h2', {'class': 'title'}).href
+            print("".join(title))
+            print("".join(company))
+            print("".join(location))
+            print(url)
+            print('\n')
 
     def __next_page(self):
         self.page_count += 10
