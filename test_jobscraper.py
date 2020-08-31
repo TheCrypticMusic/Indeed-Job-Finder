@@ -24,7 +24,7 @@ class TestJobScraper(unittest.TestCase):
             self.assertTrue(self.test_search2.connect())
             self.assertTrue(self.test_search3.connect())
         
-    def test_soup_content_on_page_is_appended_to_list(self):
+    def test_(self):
         pass
 
 if __name__ == '__main__':
