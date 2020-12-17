@@ -4,3 +4,5 @@
 .idea
 __pycache__
 *.xml
+venv
+test_jobscraper.py
