@@ -22,7 +22,6 @@ class JobScraper:
         print(f'Searching for {self.job} jobs in {self.location}')
         self.__indeed_soup_contents()
         
-
     def __indeed_soup_contents(self):
         indeed_soup = BeautifulSoup(self.connect().text, 'lxml')
         jobs = indeed_soup.find_all('div', {'class': 'jobsearch-SerpJobCard unifiedRow row result'})
@@ -60,3 +59,11 @@ class JobScraper:
         print(self.url)
         self.connect()
         self.search()
+
+
+if __name__ == "__main__":
+    user_location = input("Where would you like to look for jobs?\n")
+    user_job = input("Enter a job\n")
+    user_search = JobScraper(user_job, user_location)
+    user_search.connect()
+    user_search.search()
